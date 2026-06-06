@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Z - Master Universe</title>
+    <style>
+        /* Dark Saiyan Theme Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121214;
+            color: #ffffff;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(145deg, #ff4500, #ff8c00);
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px #000;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .quiz-card {
+            background-color: #1c1c1e;
+            border: 2px solid #ff8c00;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        .silhouette {
+            font-size: 80px;
+            margin: 20px 0;
+            filter: drop-shadow(0px 0px 10px #ff8c00);
+        }
+        .hint {
+            color: #aaaaaa;
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #2c2c2e;
+            color: white;
+            border: 1px solid #444;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        .score-board {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff8c00;
+        }
+        .nav-btn {
+            background: #ff8c00;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DBZ Master Portal</h1>
+    </header>
+
+    <div class="container">
+        <h2>🔥 Guess The Character!</h2>
+        <p>Kya tum saare Dragon Ball characters ko pehchan sakte ho?</p>
+
+        <div class="quiz-card">
+            <!-- Emoji character representation for lightweight mobile loading -->
+            <div id="char-avatar" class="silhouette">👨‍🎤</div>
+            <div id="dbz-hint" class="hint">Hint: Loading...</div>
+            
+            <div class="options-grid">
+                <button onclick="checkAnswer(0)" id="opt0">Option 1</button>
+                <button onclick="checkAnswer(1)" id="opt1">Option 2</button>
+                <button onclick="checkAnswer(2)" id="opt2">Option 3</button>
+                <button onclick="checkAnswer(3)" id="opt3">Option 4</button>
+            </div>
+        </div>
+
+        <div class="score-board">
+            Score: <span id="score">0</span>
+        </div>
+    </div>
+
+    <script>
+        // Database for the game
+        const dbzCharacters = [
+            { name: "Goku", hint: "He loves eating, fighting, and has an iconic Kamehameha attack!", avatar: "🧡" },
+            { name: "Vegeta", hint: "The proud Prince of all Saiyans who always wants to surpass Goku.", avatar: "👑" },
+            { name: "Gohan", hint: "Goku's eldest son who defeated Cell in his Super Saiyan 2 form.", avatar: "⚡" },
+            { name: "Piccolo", hint: "Namekian warrior who trained Gohan and wears a heavy white cape.", avatar: "👽" },
+            { name: "Trunks", hint: "The time-traveling Saiyan swordfighter from a ruined future.", avatar: "⏳" },
+            { name: "Frieza", hint: "The galactic tyrant who destroyed Planet Vegeta and loves golden form.", avatar: "😈" }
+        ];
+
+        let currentQuestion = {};
+        let score = 0;
+
+        function startGame() {
+            // Pick a random character
+            const randomIndex = Math.floor(Math.random() * dbzCharacters.length);
+            currentQuestion = dbzCharacters[randomIndex];
+            
+            document.getElementById("char-avatar").innerText = currentQuestion.avatar;
+            document.getElementById("dbz-hint").innerText = "Hint: " + currentQuestion.hint;
+
+            // Generate options
+            let options = [currentQuestion.name];
+            while(options.length < 4) {
+                let randomChar = dbzCharacters[Math.floor(Math.random() * dbzCharacters.length)].name;
+                if(!options.includes(randomChar)) {
+                    options.push(randomChar);
+                }
+            }
+
+            // Shuffle options
+            options.sort(() => Math.random() - 0.5);
+
+            // Set buttons text
+            for(let i=0; i<4; i++) {
+                document.getElementById("opt" + i).innerText = options[i];
+                document.getElementById("opt" + i).style.backgroundColor = "#2c2c2e";
+            }
+        }
+
+        function checkAnswer(optionIndex) {
+            const selectedName = document.getElementById("opt" + optionIndex).innerText;
+            if(selectedName === currentQuestion.name) {
+                score++;
+                document.getElementById("score").innerText = score;
+                alert("Sahi Jawab! 🔥 You are a true Saiyan.");
+                startGame();
+            } else {
+                alert(`Galat Jawab! 💥 Correct answer was ${currentQuestion.name}. Try Again!`);
+                score = 0;
+                document.getElementById("score").innerText = score;
+                startGame();
+            }
+        }
+
+        // Initialize the game on load
+        startGame();
+    </script>
+</body>
+</html>
+  
