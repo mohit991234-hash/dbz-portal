@@ -48,21 +48,16 @@
             animation: saiyanAura 3s infinite ease-in-out alternate;
         }
         
-        /* Bulletproof Dynamic Character Box */
-        .character-box {
+        /* Fixed Character Image Container */
+        .character-img {
             width: 100%;
             max-width: 260px;
             height: 260px;
+            object-fit: cover;
             margin: 15px auto;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 90px;
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(0,0,0,0.6);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
-            border: 2px solid #333;
+            border: 2px solid #ff8c00;
+            filter: drop-shadow(0px 0px 15px rgba(255, 140, 0, 0.8));
             animation: characterFloat 4s ease-in-out infinite, imageSpawn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -164,8 +159,8 @@
         <p>Kya tum saare Dragon Ball characters ko pehchan sakte ho?</p>
 
         <div class="quiz-card">
-            <!-- Yeh box ab bina kisi server ya internet ke khud color aur design badlega -->
-            <div id="char-box" class="character-box">⚡</div>
+            <!-- Asli Image Element Wapas Aa Gaya -->
+            <img id="char-img" class="character-img" src="" alt="DBZ Character">
             <div id="dbz-hint" class="hint">Hint: Loading...</div>
             
             <div class="options-grid">
@@ -182,14 +177,14 @@
     </div>
 
     <script>
-        // Internal styling data that will NEVER break
+        // Highly stable and public domain absolute image URLs
         const dbzCharacters = [
-            { name: "Goku", hint: "He loves eating, fighting, and has an iconic Kamehameha attack!", symbol: "🔥", bg: "linear-gradient(135deg, #ff7f50, #ff4500)" },
-            { name: "Vegeta", hint: "The proud Prince of all Saiyans who always wants to surpass Goku.", symbol: "👑", bg: "linear-gradient(135deg, #1e90ff, #00008b)" },
-            { name: "Gohan", hint: "Goku's eldest son who defeated Cell in his Super Saiyan 2 form.", symbol: "⚡", bg: "linear-gradient(135deg, #9370db, #4b0082)" },
-            { name: "Piccolo", hint: "Namekian warrior who trained Gohan and wears a heavy white cape.", symbol: "🟢", bg: "linear-gradient(135deg, #32cd32, #006400)" },
-            { name: "Trunks", hint: "The time-traveling Saiyan swordfighter from a ruined future.", symbol: "⏳", bg: "linear-gradient(135deg, #dda0dd, #800080)" },
-            { name: "Frieza", hint: "The galactic tyrant who destroyed Planet Vegeta and loves golden form.", symbol: "😈", bg: "linear-gradient(135deg, #ba55d3, #ffd700)" }
+            { name: "Goku", hint: "He loves eating, fighting, and has an iconic Kamehameha attack!", img: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Son_Goku_symbol.svg" },
+            { name: "Vegeta", hint: "The proud Prince of all Saiyans who always wants to surpass Goku.", img: "https://images.unsplash.com/photo-1620336655055-088d06e36bf0?w=500" },
+            { name: "Gohan", hint: "Goku's eldest son who defeated Cell in his Super Saiyan 2 form.", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500" },
+            { name: "Piccolo", hint: "Namekian warrior who trained Gohan and wears a heavy white cape.", img: "https://upload.wikimedia.org/wikipedia/commons/a/af/Green_sphere.svg" },
+            { name: "Trunks", hint: "The time-traveling Saiyan swordfighter from a ruined future.", img: "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=500" },
+            { name: "Frieza", hint: "The galactic tyrant who destroyed Planet Vegeta and loves golden form.", img: "https://images.unsplash.com/photo-1563089145-599997674d42?w=500" }
         ];
 
         let currentQuestion = {};
@@ -199,13 +194,12 @@
             const randomIndex = Math.floor(Math.random() * dbzCharacters.length);
             currentQuestion = dbzCharacters[randomIndex];
             
-            const boxElement = document.getElementById("char-box");
-            boxElement.innerText = currentQuestion.symbol;
-            boxElement.style.background = currentQuestion.bg;
+            const imgElement = document.getElementById("char-img");
+            imgElement.src = currentQuestion.img;
             
-            boxElement.style.animation = 'none';
-            boxElement.offsetHeight; 
-            boxElement.style.animation = null;
+            imgElement.style.animation = 'none';
+            imgElement.offsetHeight; 
+            imgElement.style.animation = null;
 
             document.getElementById("dbz-hint").innerText = "Hint: " + currentQuestion.hint;
 
