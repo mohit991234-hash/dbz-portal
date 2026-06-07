@@ -1,1 +1,263 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Z - Master Universe</title>
+    <style>
+        /* Dark Saiyan Theme Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0c0c0e;
+            color: #ffffff;
+            text-align: center;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at center, #1a1a24 0%, #0c0c0e 100%);
+        }
+        header {
+            background: linear-gradient(135deg, #ff3c00, #ff8c00);
+            padding: 25px;
+            box-shadow: 0 5px 25px rgba(255, 60, 0, 0.5);
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 0px #000;
+            animation: textPulse 1.5s infinite alternate;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Bhayankar Saiyan Aura Card */
+        .quiz-card {
+            background-color: #16161a;
+            border: 3px solid #ff4500;
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.2);
+            animation: saiyanAura 3s infinite ease-in-out alternate;
+        }
+        
+        /* Character Image Advanced Animation */
+        .character-img {
+            width: 100%;
+            max-width: 260px;
+            height: 260px;
+            object-fit: contain;
+            margin: 15px 0;
+            border-radius: 12px;
+            filter: drop-shadow(0px 0px 15px rgba(255, 140, 0, 0.8));
+            animation: characterFloat 4s ease-in-out infinite, imageSpawn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* --- ALL BHAYANKAR ANIMATIONS KEYFRAMES --- */
+        @keyframes textPulse {
+            0% { transform: scale(1); text-shadow: 2px 2px 0px #000, 0 0 10px rgba(255,255,255,0.2); }
+            100% { transform: scale(1.03); text-shadow: 3px 3px 0px #000, 0 0 20px rgba(255,69,0,0.8); }
+        }
+        
+        @keyframes saiyanAura {
+            0% { 
+                box-shadow: 0 0 20px rgba(255, 69, 0, 0.3), inset 0 0 10px rgba(255, 69, 0, 0.1);
+                border-color: #ff8c00;
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 60, 0, 0.7), inset 0 0 20px rgba(255, 60, 0, 0.3);
+                border-color: #ff0000;
+            }
+            100% { 
+                box-shadow: 0 0 20px rgba(255, 69, 0, 0.3), inset 0 0 10px rgba(255, 69, 0, 0.1);
+                border-color: #ff8c00;
+            }
+        }
+        
+        @keyframes characterFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        @keyframes imageSpawn {
+            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; filter: brightness(3); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; filter: brightness(1) drop-shadow(0px 0px 15px rgba(255, 140, 0, 0.8)); }
+        }
+
+        .hint {
+            color: #ccc;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #ff8c00;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        /* Premium Glossy Buttons */
+        button {
+            background: linear-gradient(180deg, #3a3a3e 0%, #222224 100%);
+            color: white;
+            border: 1px solid #555;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        
+        button:active {
+            transform: scale(0.9);
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+        }
+        
+        /* Hyper Score Board */
+        .score-board {
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(90deg, #1c1c1e, #ff8c00, #1c1c1e);
+            padding: 12px 35px;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .score-bump {
+            transform: scale(1.2) rotate(3deg);
+            background: linear-gradient(90deg, #1c1c1e, #27ae60, #1c1c1e);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DBZ Super Saiyan Portal</h1>
+    </header>
+
+    <div class="container">
+        <h2>🔥 Guess The Character!</h2>
+        <p>Kya tum saare Dragon Ball characters ko pehchan sakte ho?</p>
+
+        <div class="quiz-card">
+            <img id="char-img" class="character-img" src="" alt="DBZ Character">
+            <div id="dbz-hint" class="hint">Hint: Loading...</div>
+            
+            <div class="options-grid">
+                <button onclick="checkAnswer(0)" id="opt0">Option 1</button>
+                <button onclick="checkAnswer(1)" id="opt1">Option 2</button>
+                <button onclick="checkAnswer(2)" id="opt2">Option 3</button>
+                <button onclick="checkAnswer(3)" id="opt3">Option 4</button>
+            </div>
+        </div>
+
+        <div id="score-box" class="score-board">
+            Score: <span id="score">0</span>
+        </div>
+    </div>
+
+    <script>
+        const dbzCharacters = [
+            { name: "Goku", hint: "He loves eating, fighting, and has an iconic Kamehameha attack!", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60" },
+            { name: "Vegeta", hint: "The proud Prince of all Saiyans who always wants to surpass Goku.", img: "https://api.otakustore.co/wp-content/uploads/2023/11/vegeta-dragon-ball.png" },
+            { name: "Gohan", hint: "Goku's eldest son who defeated Cell in his Super Saiyan 2 form.", img: "https://api.otakustore.co/wp-content/uploads/2024/01/Gohan_Beast.png" },
+            { name: "Piccolo", hint: "Namekian warrior who trained Gohan and wears a heavy white cape.", img: "https://api.otakustore.co/wp-content/uploads/2023/11/piccolo-dragon-ball.png" },
+            { name: "Trunks", hint: "The time-traveling Saiyan swordfighter from a ruined future.", img: "https://api.otakustore.co/wp-content/uploads/2024/01/Future_Trunks.png" },
+            { name: "Frieza", hint: "The galactic tyrant who destroyed Planet Vegeta and loves golden form.", img: "https://api.otakustore.co/wp-content/uploads/2023/11/frieza-dragon-ball.png" }
+        ];
+
+        let currentQuestion = {};
+        let score = 0;
+
+        function startGame() {
+            const randomIndex = Math.floor(Math.random() * dbzCharacters.length);
+            currentQuestion = dbzCharacters[randomIndex];
+            
+            const imgElement = document.getElementById("char-img");
+            imgElement.src = currentQuestion.img;
+            
+            // Re-trigger image pop animation
+            imgElement.style.animation = 'none';
+            imgElement.offsetHeight; 
+            imgElement.style.animation = null;
+
+            document.getElementById("dbz-hint").innerText = "Hint: " + currentQuestion.hint;
+
+            let options = [currentQuestion.name];
+            while(options.length < 4) {
+                let randomChar = dbzCharacters[Math.floor(Math.random() * dbzCharacters.length)].name;
+                if(!options.includes(randomChar)) {
+                    options.push(randomChar);
+                }
+            }
+
+            options.sort(() => Math.random() - 0.5);
+
+            for(let i=0; i<4; i++) {
+                const btn = document.getElementById("opt" + i);
+                btn.innerText = options[i];
+                btn.style.background = "linear-gradient(180deg, #3a3a3e 0%, #222224 100%)";
+                btn.style.borderColor = "#555";
+                btn.disabled = false;
+            }
+        }
+
+        function checkAnswer(optionIndex) {
+            const selectedName = document.getElementById("opt" + optionIndex).innerText;
+            const scoreBox = document.getElementById("score-box");
+            
+            for(let i=0; i<4; i++) {
+                document.getElementById("opt" + i).disabled = true;
+            }
+
+            if(selectedName === currentQuestion.name) {
+                score++;
+                document.getElementById("score").innerText = score;
+                document.getElementById("opt" + optionIndex).style.background = "linear-gradient(180deg, #2ecc71 0%, #27ae60 100%)";
+                document.getElementById("opt" + optionIndex).style.borderColor = "#2ecc71";
+                
+                scoreBox.classList.add("score-bump");
+                setTimeout(() => scoreBox.classList.remove("score-bump"), 400);
+
+                setTimeout(() => {
+                    alert("Sahi Jawab! 🔥 You are a true Saiyan.");
+                    startGame();
+                }, 300);
+            } else {
+                document.getElementById("opt" + optionIndex).style.background = "linear-gradient(180deg, #e74c3c 0%, #c0392b 100%)";
+                document.getElementById("opt" + optionIndex).style.borderColor = "#e74c3c";
+                score = 0;
+                document.getElementById("score").innerText = score;
+                
+                setTimeout(() => {
+                    alert(`Galat Jawab! 💥 Correct answer was ${currentQuestion.name}. Try Again!`);
+                    startGame();
+                }, 300);
+            }
+        }
+
+        startGame();
+    </script>
+</body>
+</html>
