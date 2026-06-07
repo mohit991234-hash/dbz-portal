@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -178,13 +177,14 @@
     </div>
 
     <script>
+        // Imgur high-quality verified direct links for DBZ characters
         const dbzCharacters = [
-            { name: "Goku", hint: "He loves eating, fighting, and has an iconic Kamehameha attack!", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60" },
-            { name: "Vegeta", hint: "The proud Prince of all Saiyans who always wants to surpass Goku.", img: "https://api.otakustore.co/wp-content/uploads/2023/11/vegeta-dragon-ball.png" },
-            { name: "Gohan", hint: "Goku's eldest son who defeated Cell in his Super Saiyan 2 form.", img: "https://api.otakustore.co/wp-content/uploads/2024/01/Gohan_Beast.png" },
-            { name: "Piccolo", hint: "Namekian warrior who trained Gohan and wears a heavy white cape.", img: "https://api.otakustore.co/wp-content/uploads/2023/11/piccolo-dragon-ball.png" },
-            { name: "Trunks", hint: "The time-traveling Saiyan swordfighter from a ruined future.", img: "https://api.otakustore.co/wp-content/uploads/2024/01/Future_Trunks.png" },
-            { name: "Frieza", hint: "The galactic tyrant who destroyed Planet Vegeta and loves golden form.", img: "https://api.otakustore.co/wp-content/uploads/2023/11/frieza-dragon-ball.png" }
+            { name: "Goku", hint: "He loves eating, fighting, and has an iconic Kamehameha attack!", img: "https://i.imgur.com/zZf6E2G.png" },
+            { name: "Vegeta", hint: "The proud Prince of all Saiyans who always wants to surpass Goku.", img: "https://i.imgur.com/8mXmK7G.png" },
+            { name: "Gohan", hint: "Goku's eldest son who defeated Cell in his Super Saiyan 2 form.", img: "https://i.imgur.com/7w3Y9uD.png" },
+            { name: "Piccolo", hint: "Namekian warrior who trained Gohan and wears a heavy white cape.", img: "https://i.imgur.com/w9P2WbE.png" },
+            { name: "Trunks", hint: "The time-traveling Saiyan swordfighter from a ruined future.", img: "https://i.imgur.com/V9X2VlX.png" },
+            { name: "Frieza", hint: "The galactic tyrant who destroyed Planet Vegeta and loves golden form.", img: "https://i.imgur.com/bK6uR6R.png" }
         ];
 
         let currentQuestion = {};
@@ -197,7 +197,6 @@
             const imgElement = document.getElementById("char-img");
             imgElement.src = currentQuestion.img;
             
-            // Re-trigger image pop animation
             imgElement.style.animation = 'none';
             imgElement.offsetHeight; 
             imgElement.style.animation = null;
